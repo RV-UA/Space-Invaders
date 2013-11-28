@@ -1,0 +1,12 @@
+Window
+{
+BgColor=Black
+Width=1000
+Height=600
+AlienPerRow=7
+NrAlienRows=4
+NrAlien1=4
+NrAlien2=0
+NrAlien3=0
+NrBunkers=3
+}

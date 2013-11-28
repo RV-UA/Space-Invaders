@@ -1,0 +1,9 @@
+Bunker
+{
+Pos_x=100
+Pos_y=400
+Size_x=40
+Size_y=20
+Health=10
+Color=White
+}

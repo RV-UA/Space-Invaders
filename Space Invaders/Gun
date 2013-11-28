@@ -1,0 +1,10 @@
+Gun
+{
+Speed=5
+Color=Green
+Pos_x=320
+Pos_y=550
+Size_x=30
+Size_y=20
+}
+

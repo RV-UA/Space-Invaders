@@ -1,0 +1,8 @@
+Alien Class=Alien1
+{
+Speed=3
+Size_x=20
+Size_y=10
+Color=White
+}
+

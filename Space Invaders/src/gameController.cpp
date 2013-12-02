@@ -158,6 +158,20 @@ void GameController::checkCollision() {
 			break;
 		}
 	}
+	// check for aliens hitting bunkers:
+	for (unsigned int i = 0; i< model_->aliens_.size(); i++) {
+		for (unsigned int j = 0; j < model_->bunkers_.size(); j++) {
+			bool hit = utility::intersects(model_->aliens_.at(i), model_->bunkers_.at(j));
+			if (hit) {
+				model_->aliens_.erase(model_->aliens_.begin()+i);
+				i--;
+				model_->bunkers_.erase(model_->bunkers_.begin()+j);
+				j--;
+				break;
+			}
+		}
+	}
+
 }
 
 void GameController::checkBoundaries () {

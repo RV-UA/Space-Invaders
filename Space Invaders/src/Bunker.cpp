@@ -16,6 +16,7 @@ Bunker::Bunker(Position p) : Entity(p, sf::Color::Yellow, 0, none, 50,20), healt
 }
 
 Bunker::Bunker(Position p, int h, sf::Color c, unsigned int sx, unsigned int sy) : Entity(p, c, 0, none, sx, sy), health_(h){
+	std::cout << "position: " << "( " << position_.first << " , " << position_.second << ")" << std::endl;
 }
 
 Bunker::~Bunker() {

@@ -12,18 +12,30 @@ namespace objects {
 Alien::Alien() : Entity(), down_(false){
 
 	position_ = Position(50,50);
-	time_ = 1;
-	move_time_ = 1;
 	direction_= right;
-	fireTime_ = rand() % 300 + 100;
+	fireTime_ = 1000;
+	switchDirection_time_ = 300;
+	moveVertical_time_ = 1200;
+	moveHorizontal_time_ = 10;
+	lastFired_ = 0;
+	lastMoved_=0;
+	lastChangedDir_ = 0;
+	lastMovedDown_= 0;
+	fireChance_ = 10;
 }
 
 Alien::Alien(Position p, sf::Color c, double s, unsigned int sx, unsigned int sy)
-	: Entity(p, c, s, right, sx, sy),
-	time_(1),
-	move_time_(1),
-	fireTime_(rand()%300+100),
-	down_(false)
+	: 	Entity(p, c, s, right, sx, sy),
+		switchDirection_time_ ( 300),
+		moveVertical_time_( 1200),
+		moveHorizontal_time_(50),
+		fireTime_(1000),
+		down_(false),
+		lastFired_(0),
+		lastMoved_(0),
+		lastChangedDir_(0),
+		lastMovedDown_(0),
+		fireChance_(10)
 {
 	direction_ = right;
 }
@@ -37,13 +49,14 @@ void Alien::setMove(MoveDirection dir){
 	direction_ = dir;
 }
 
-void Alien::move() {
+void Alien::move(int time) {
 	if (down_) {
 		position_.second+=5*speed_;
 		down_ = false;
 	}
-	if (move_time_ % 10 == 0)
+	if (time - lastMoved_ > moveHorizontal_time_)
 	{
+		lastMoved_ = time;
 		switch(direction_)
 		{
 		case right:
@@ -57,7 +70,8 @@ void Alien::move() {
 			break;
 		}
 	}
-	if (move_time_ % 300 == 0 ) {
+	if (time - lastChangedDir_ > switchDirection_time_  ) {
+		lastChangedDir_ = time;
 		switch(direction_)
 		{
 		case right:
@@ -68,12 +82,11 @@ void Alien::move() {
 			break;
 		}
 	}
-	if (move_time_ % 1200   == 0) {
-		move_time_ = 1;
+	if (time - lastMovedDown_ >moveVertical_time_ ) {
+		lastMovedDown_ = time;
 		down_ = true;
 	}
 	sprite_.setPosition(position_);
-	move_time_++;
 	// TODO: add going down
 }
 
@@ -87,28 +100,31 @@ void Alien::setPosition(Position p) {
 }
 
 AlienType1::AlienType1(Position p, double s, sf::Color c, unsigned int sx, unsigned int sy) : Alien(p, c, s, sx, sy) {
-	time_ = 1;
 	direction_ = right;
 }
 
-std::shared_ptr<Bullet> AlienType1::fire() {
+std::shared_ptr<Bullet> AlienType1::fire(int time) {
 	// create new bullet
 	// fire in certain dir
-	if (time_ % fireTime_ != 0)
+	if (time-lastFired_ < fireTime_)
 	{
-		time_++;
 		return nullptr;
 	}
-	time_ = 0;
-	time_++;
-	fireTime_ = rand() % 300 +150;
+	std::cout << "time: " << time << " lastFired_ = " << lastFired_ << " FireTime = " << fireTime_ << std::endl;
 	// create bullet and set direction
 	// calculate position to be middle of gun
+	lastFired_ = time;
 
-	Position pos(this->getPosition());
-	pos.first+=(this->getSizeX()/2)-2;
-	std::shared_ptr<Bullet> ret (new Bullet(down, speed_, pos, this->getColor()));
-	return ret;
+	int chance = rand()%100;
+	if (chance <= fireChance_) {
+		Position pos(this->getPosition());
+		pos.first+=(this->getSizeX()/2)-2;
+		std::shared_ptr<Bullet> ret (new Bullet(down, speed_, pos, this->getColor()));
+		return ret;
+	}
+	else {
+		return nullptr;
+	}
 }
 
 void AlienType1::draw(sf::RenderWindow& w) {

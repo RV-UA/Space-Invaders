@@ -28,6 +28,11 @@ public:
 	//! An empty destructor
 	virtual ~Alien();
 
+	//! A function firing (pure virtual)
+	/**
+	 * @param time time game has been running
+	 */
+	virtual std::shared_ptr<Bullet> fire(int time) = 0;
 	//! A function drawing the Alien on the given window (pure virtual)
 	virtual void draw(sf::RenderWindow& window) = 0;
 	//! A function setting the direction of the Alien;
@@ -36,9 +41,10 @@ public:
 	 */
 	virtual void setMove(MoveDirection direction);
 	//! A function moving the Alien in its direction, distance is determined by the speed
-	virtual void move();
-	//! fire a bullet (pure virtual)
-	virtual std::shared_ptr<Bullet> fire() = 0;
+	/**
+	 * @param time the time the game is running
+	 */
+	virtual void move(int time);
 	//! getter for the position of the Alien
 	virtual Position getPosition() const;
 	//! setter for the position
@@ -48,10 +54,16 @@ public:
 	void setPosition(Position position);
 
 protected:
-	int fireTime_; 		//! time to fire
-	int time_;			//! used to determine whether the alien should fire or not
-	int move_time_;		//! used to determine the movement of aliens and switch directions
-	bool down_;			//! used to make aliens go down
+	int fireTime_; 				//! time to fire
+	int moveHorizontal_time_;	//! used to determine the horizontal movement of aliens
+	int switchDirection_time_;	//! used to detemine switching directions
+	int moveVertical_time_;		//! used to determine the vertical movement
+	bool down_;					//! used to make aliens go down
+	int lastFired_; 			//! the time the alien has last fired
+	int lastMoved_;				//! the time the alien has last moved horizontally
+	int lastChangedDir_;		//! the time the alien has last changed its moving direction
+	int lastMovedDown_;			//! the time the alien has last moved down
+	int fireChance_;			//! the chance the alien will fire after fireTime
 };
 
 class AlienType1 : public Alien {
@@ -73,9 +85,10 @@ public:
 
 	//! A function firing a bullet if it is the right time
 	/**
+	 * @param time the time the game is busy
 	 * @return a pointer to a Bullet if time_ == fire_time_, else a nullpointer
 	 */
-	virtual std::shared_ptr<Bullet> fire();
+	virtual std::shared_ptr<Bullet> fire(int time);
 
 };
 

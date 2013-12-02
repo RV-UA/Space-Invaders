@@ -6,6 +6,7 @@
  */
 
 #include "Entity.h"
+#include <iostream>
 
 namespace objects {
 
@@ -44,7 +45,9 @@ Entity::Entity(Position p, sf::Color c, double speed, MoveDirection dir, unsigne
 		size_x_(sx),
 		size_y_(sy),
 		sprite_(DrawEntity(position_, size_x_, size_y_, color_))
-{}
+{
+	std::cout << "position = " << position_.first << " , " << position_.second << std::endl;
+}
 
 Entity::~Entity() {
 	// TODO Auto-generated destructor stub

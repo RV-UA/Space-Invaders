@@ -27,15 +27,17 @@ Bullet::~Bullet() {
 }
 
 
-void Bullet::move() {
-	switch(direction_) {
-	case up:
-		position_.second -= speed_;
-		break;
-	case down:
-		position_.second += speed_;
+void Bullet::move(int time, int updateTime) {
+	if (time % updateTime == 0) {
+		switch(direction_) {
+		case up:
+			position_.second -= speed_;
+			break;
+		case down:
+			position_.second += speed_;
+		}
+		sprite_.setPosition(position_);
 	}
-	sprite_.setPosition(position_);
 }
 
 void Bullet::draw(sf::RenderWindow& w) {

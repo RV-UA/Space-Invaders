@@ -60,8 +60,6 @@ public:
 	virtual ~Entity();
 	//! A fuction used to draw the entity (pure virtual)
 	virtual void draw(sf::RenderWindow& w) = 0;
-	//! A function used to move the entity(pure virtual)
-	virtual void move() = 0;
 	//! A getter for position_
 	virtual Position getPosition() const {return position_;}
 	//! A getter for size_x_

@@ -64,6 +64,8 @@ void Gun::draw(sf::RenderWindow& w) {
 void Gun::setPosition(Position p) {
 	position_ = p;
 	sprite_.setPosition(position_);
+	std::cout << "position: " << getPosition().first << " , " << getPosition().second << std::endl;
+
 }
 
 double Gun::getSpeed() const {

@@ -191,7 +191,7 @@ namespace parse {
 			return ret;
 		}
 		else{
-			// return other types
+			return nullptr;
 		}
 	}
 
@@ -353,6 +353,7 @@ namespace parse {
 			throw(Exception("EXPECTED } but got " + line + " IN FILE " + filename));
 		}
 		// construct Bunker
+		std::cout << pos.second << std::endl;
 		std::shared_ptr<objects::Bunker> ret (new objects::Bunker(pos, health, color, size_x, size_y));
 		return ret;
 
@@ -523,9 +524,14 @@ namespace parse {
 
 	}
 
-	void readWindow(std::string file, unsigned int &width, unsigned int &height, sf::Color& color, int& alienPerRow,int& nrAlienRows , int& nrAlien1 , int& nrAlien2 ,int& nrAlien3, int& nrBunkers ){
+	void readWindow(std::string file, sf::Color& bgColor,
+			unsigned int &width, unsigned int &height,
+			double& alienSpeed, int& gunFireSpeed,int& bulletUpdateDelay,
+			int& aliensPerRow,int& nrAlienRows ,
+			int& nrAlien1 , int& nrAlien2 ,int& nrAlien3,
+			int& nrBunkers ) {
 		std::string c = "Black";
-		color = sf::Color::Black;
+		bgColor = sf::Color::Black;
 		std::ifstream in;
 		in.open(file.c_str());
 
@@ -561,28 +567,28 @@ namespace parse {
 			c = cls.second;
 			std::cout << "color= " << c << std::endl;
 			if (c == "White") {
-				color = sf::Color::White;
+				bgColor = sf::Color::White;
 			}
 			else if (c == "Black") {
-				color = sf::Color::Black;
+				bgColor = sf::Color::Black;
 			}
 			else if (c == "Green") {
-				color = sf::Color::Green;
+				bgColor = sf::Color::Green;
 			}
 			else if (c == "Red") {
-				color = sf::Color::Red;
+				bgColor = sf::Color::Red;
 			}
 			else if (c == "Blue") {
-				color = sf::Color::Blue;
+				bgColor = sf::Color::Blue;
 			}
 			else if (c == "Yellow") {
-				color = sf::Color::Yellow;
+				bgColor = sf::Color::Yellow;
 			}
 			else if (c == "Magenta") {
-				color = sf::Color::Magenta;
+				bgColor = sf::Color::Magenta;
 			}
 			else if (c == "Cyan") {
-				color = sf::Color::Cyan;
+				bgColor = sf::Color::Cyan;
 			}
 			else{
 				throw (Exception("UNDEFINED COLOR " + c + " PLEASE TRY ANY OF THE FOLLOWING: White, Black, Red, Green, Yellow, Blue, Magenta, Cyan"));
@@ -621,6 +627,58 @@ namespace parse {
 		}
 		std::cout << "Width= " << width << " height= " << height << std::endl;
 
+		// read AlienSpeed:
+		line.clear();
+		getline(in, line);
+		try {
+			cls = utility::splitAtEq(line);
+		}
+		catch(...) {
+			throw(Exception(file + " HAS INVALID FORMAT"));
+		}
+		if (cls.first != "AlienSpeed") {
+			throw(Exception("EXPECTED AlienSpeed but got " + cls.first + " IN FILE " + file));
+		}
+		else {
+			alienSpeed = atoi(cls.second.c_str());
+		}
+		std::cout << "AlienSpeed= " << alienSpeed << std::endl;
+
+		// read GunFireSpeed:
+		line.clear();
+		getline(in, line);
+		try {
+			cls = utility::splitAtEq(line);
+		}
+		catch(...) {
+			throw(Exception(file + " HAS INVALID FORMAT"));
+		}
+		if (cls.first != "GunFireSpeed") {
+			throw(Exception("EXPECTED GunFireSpeed but got " + cls.first + " IN FILE " + file));
+		}
+		else {
+			gunFireSpeed = atoi(cls.second.c_str());
+		}
+		std::cout << "GunFireSpeed= " << gunFireSpeed << std::endl;
+
+		// read BulletUpdateDelay:
+		line.clear();
+		getline(in, line);
+		try {
+			cls = utility::splitAtEq(line);
+		}
+		catch(...) {
+			throw(Exception(file + " HAS INVALID FORMAT"));
+		}
+		if (cls.first != "BulletUpdateDelay") {
+			throw(Exception("EXPECTED BulletUpdateDelay but got " + cls.first + " IN FILE " + file));
+		}
+		else {
+			bulletUpdateDelay = atoi(cls.second.c_str());
+		}
+		std::cout << "BulletUpdateDelay= " << bulletUpdateDelay << std::endl;
+
+
 		// read Aliens per row
 		line.clear();
 		getline(in, line);
@@ -634,7 +692,7 @@ namespace parse {
 			throw(Exception("EXPECTED AlienPerRow but got " + cls.first + " IN FILE " + file));
 		}
 		else {
-			alienPerRow = atoi(cls.second.c_str());
+			aliensPerRow = atoi(cls.second.c_str());
 		}
 
 		// read nr of rows of aliens

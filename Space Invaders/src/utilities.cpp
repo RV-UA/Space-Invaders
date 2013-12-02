@@ -71,7 +71,13 @@ bool utility::intersects(std::shared_ptr<objects::Entity> e1,std::shared_ptr<obj
 	e1c4.first+= e1->getSizeX();
 	e1c4.second+= e1->getSizeY();
 
-
+	/*
+	std::cout << "4 corners of 1st object: " << std::endl;
+	std::cout << e1c1.first << " , " << e1c1.second << std::endl;
+	std::cout << e1c2.first << " , " << e1c2.second << std::endl;
+	std::cout << e1c3.first << " , " << e1c3.second << std::endl;
+	std::cout << e1c4.first << " , " << e1c4.second << std::endl;
+*/
 	// calculate the 4 corners of e2
 	objects::Position e2c1, e2c2, e2c3, e2c4;
 	e2c1 = e2->getPosition();
@@ -82,6 +88,14 @@ bool utility::intersects(std::shared_ptr<objects::Entity> e1,std::shared_ptr<obj
 	e2c4 = e2->getPosition();
 	e2c4.first+= e2->getSizeX();
 	e2c4.second+= e2->getSizeY();
+
+	/*
+	std::cout << "4 corners of 2nd object: " << std::endl;
+	std::cout << e2c1.first << " , " << e2c1.second << std::endl;
+	std::cout << e2c2.first << " , " << e2c2.second << std::endl;
+	std::cout << e2c3.first << " , " << e2c3.second << std::endl;
+	std::cout << e2c4.first << " , " << e2c4.second << std::endl;
+*/
 
 	// check if object 2 has a corner in object 1
 	if (e2c1.first < e1c2.first  && e2c1.first > e1c1.first) {

@@ -30,7 +30,11 @@ public:
 	//! An empty destructor
 	virtual ~Bullet();
 	//! A function moving the bullet in direction
-	void move();
+	/**
+	 * @param time the time the game has been played
+	 * @param updateTime determine time to move
+	 */
+	void move(int time, int updateTime);
 	//! A function drawing the bullet
 	/**
 	 * @param w the window used to display the game

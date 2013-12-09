@@ -14,8 +14,8 @@ Alien::Alien() : Entity(), down_(false){
 	position_ = Position(50,50);
 	direction_= right;
 	fireTime_ = 1000;
-	switchDirection_time_ = 1000;
-	moveVertical_time_ = 2000;
+	switchDirection_time_ = 3000;
+	moveVertical_time_ = 2*switchDirection_time_;
 	moveHorizontal_time_ = 100;
 	lastFired_ = 0;
 	lastMoved_=0;
@@ -27,8 +27,8 @@ Alien::Alien() : Entity(), down_(false){
 
 Alien::Alien(Position p, sf::Color c, double s, unsigned int sx, unsigned int sy)
 	: 	Entity(p, c, s, right, sx, sy),
-		switchDirection_time_ ( 1000),
-		moveVertical_time_( 2000 ),
+		switchDirection_time_ ( 3000),
+		moveVertical_time_( 2*switchDirection_time_ ),
 		moveHorizontal_time_(100),
 		fireTime_(1000),
 		down_(false),

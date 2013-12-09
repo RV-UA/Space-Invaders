@@ -64,6 +64,8 @@ private:
 	int bulletUpdateDelay_; //! the speed with which bullets will be updated
 	unsigned int level_; //! the level you are currently playing
 
+	int score_; //! the score you have in the game
+
 };
 
 } /* namespace game */

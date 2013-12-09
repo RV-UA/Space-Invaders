@@ -22,6 +22,7 @@ Alien::Alien() : Entity(), down_(false){
 	lastChangedDir_ = 0;
 	lastMovedDown_= 0;
 	fireChance_ = 10;
+	score_ = 100;
 }
 
 Alien::Alien(Position p, sf::Color c, double s, unsigned int sx, unsigned int sy)
@@ -35,7 +36,8 @@ Alien::Alien(Position p, sf::Color c, double s, unsigned int sx, unsigned int sy
 		lastMoved_(0),
 		lastChangedDir_(0),
 		lastMovedDown_(0),
-		fireChance_(10)
+		fireChance_(10),
+		score_(100)
 {
 	direction_ = right;
 }
@@ -97,6 +99,10 @@ Position Alien::getPosition() const {
 void Alien::setPosition(Position p) {
 	position_ = p;
 	sprite_.setPosition(position_);
+}
+
+int Alien::getScore() const {
+	return score_;
 }
 
 AlienType1::AlienType1(Position p, double s, sf::Color c, unsigned int sx, unsigned int sy) : Alien(p, c, s, sx, sy) {

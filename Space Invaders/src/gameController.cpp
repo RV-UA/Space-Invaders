@@ -9,8 +9,7 @@
 
 namespace game {
 
-GameController::GameController(std::shared_ptr<GameModel> model) {
-	model_ = model;
+GameController::GameController(std::shared_ptr<GameModel> model) : model_(model), time_(0){
 }
 
 GameController::~GameController() {
@@ -61,11 +60,12 @@ void GameController::moveAndFire() {
 
 
 	// move all objects;
-	for (auto c : model_->aliens_) {
-		c->move(time_);
-	}
 	for (auto b : model_->bullets_) {
 		b->move(time_, model_->bulletUpdateDelay_);
+	}
+
+	for (auto c : model_->aliens_) {
+		c->move(time_);
 	}
 
 }
@@ -117,6 +117,8 @@ void GameController::checkCollision() {
 			}
 			bool hit = utility::intersects(model_->bullets_.at(i), model_->aliens_.at(j));
 			if (hit) {
+				model_->score_ += model_->aliens_.at(j)->getScore();
+				std::cout << "Score = " << model_->score_ << std::endl;
 				model_->bullets_.erase(model_->bullets_.begin()+i);
 				i--;
 				model_->aliens_.erase(model_->aliens_.begin()+j);

@@ -25,7 +25,8 @@ GameModel::GameModel() :
 	level_(1),
 	bulletUpdateDelay_(0),
 	paused_(false),
-	pauseTime_(0)
+	pauseTime_(0),
+	score_(0)
 	{
 	arial_.loadFromFile("arial.ttf");
 	clock_.restart();

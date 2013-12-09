@@ -53,6 +53,8 @@ public:
 	 */
 	void setPosition(Position position);
 
+	virtual int getScore() const;
+
 protected:
 	int fireTime_; 				//! time to fire
 	int moveHorizontal_time_;	//! used to determine the horizontal movement of aliens
@@ -64,6 +66,7 @@ protected:
 	int lastChangedDir_;		//! the time the alien has last changed its moving direction
 	int lastMovedDown_;			//! the time the alien has last moved down
 	int fireChance_;			//! the chance the alien will fire after fireTime
+	int score_; 				//! the score you get for killing the alien
 };
 
 class AlienType1 : public Alien {

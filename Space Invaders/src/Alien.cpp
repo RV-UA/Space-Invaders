@@ -25,19 +25,23 @@ Alien::Alien() : Entity(), down_(false){
 	score_ = 100;
 }
 
-Alien::Alien(Position p, sf::Color c, double s, unsigned int sx, unsigned int sy)
+Alien::Alien(	Position p, sf::Color c, double s,
+				unsigned int sx, unsigned int sy,
+				unsigned int mov_hor, unsigned int switch_dir,
+				unsigned int fireChance, unsigned int score)
+
 	: 	Entity(p, c, s, right, sx, sy),
-		switchDirection_time_ ( 3000),
+		switchDirection_time_ (switch_dir),
 		moveVertical_time_( 2*switchDirection_time_ ),
-		moveHorizontal_time_(100),
+		moveHorizontal_time_(mov_hor),
 		fireTime_(1000),
 		down_(false),
 		lastFired_(0),
 		lastMoved_(0),
 		lastChangedDir_(0),
 		lastMovedDown_(0),
-		fireChance_(10),
-		score_(100)
+		fireChance_(fireChance),
+		score_(score)
 {
 	direction_ = right;
 }
@@ -105,7 +109,25 @@ int Alien::getScore() const {
 	return score_;
 }
 
-AlienType1::AlienType1(Position p, double s, sf::Color c, unsigned int sx, unsigned int sy) : Alien(p, c, s, sx, sy) {
+int Alien::getMoveHor() const {
+	return moveHorizontal_time_;
+}
+
+int Alien::getSwitchDir() const {
+	return switchDirection_time_;
+}
+
+
+AlienType1::AlienType1(Position p,
+		sf::Color c,
+		double s,
+		unsigned int sx,
+		unsigned int sy,
+		unsigned int mov_hor,
+		unsigned int switch_direction,
+		unsigned int fireChance,
+		unsigned int score)
+ : Alien(p, c, s, sx, sy, mov_hor, switch_direction, fireChance, score) {
 	direction_ = right;
 }
 

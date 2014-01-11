@@ -86,9 +86,14 @@ void GameController::check() {
 	checkCollision();
 	// check nr of aliens left:
 	if (model_->aliens_.size() == 0) {
+		if (model_->level_ == model_->nrLevels_ ){
+			model_->win_ = true;
+		}
+		else {
+			// setup field for next level
+		}
 		model_->win_ = true;
 	}
-
 }
 
 void GameController::checkCollision() {

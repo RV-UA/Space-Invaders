@@ -45,6 +45,10 @@ namespace parse {
 		sf::Color color = sf::Color::Black;
 		double speed = 0;
 		std::pair<unsigned int, unsigned int> pos(0,0);
+		unsigned int mov_hor = 100;
+		unsigned int switch_dir = 500;
+		unsigned int fireChance = 10;
+		unsigned int score = 100;
 		std::ifstream in;
 		in.open(filename.c_str());
 
@@ -179,6 +183,73 @@ namespace parse {
 				throw (Exception("UNDEFINED COLOR " + c + " PLEASE TRY ANY OF THE FOLLOWING: White, Black, Red, Green, Yellow, Blue, Magenta, Cyan"));
 			}
 		}
+
+		// read MoveHorizontal
+		line.clear();
+		getline(in, line);
+		try {
+			cls = utility::splitAtEq(line);
+		}
+		catch(...) {
+			throw(Exception(filename + " HAS INVALID FORMAT"));
+		}
+		if (cls.first != "MoveHorizontal") {
+			throw(Exception("EXPECTED MoveHorizontal but got " + cls.first + " IN FILE " + filename));
+		}
+		else {
+			mov_hor = atoi(cls.second.c_str());
+			std::cout << "MoveHorizontal = " << mov_hor << std::endl;
+		}
+		// read SwitchDirection
+		line.clear();
+		getline(in, line);
+		try {
+			cls = utility::splitAtEq(line);
+		}
+		catch(...) {
+			throw(Exception(filename + " HAS INVALID FORMAT"));
+		}
+		if (cls.first != "SwitchDirection") {
+			throw(Exception("EXPECTED SwitchDirection but got " + cls.first + " IN FILE " + filename));
+		}
+		else {
+			switch_dir = atoi(cls.second.c_str());
+			std::cout << "SwitchDirection = " << mov_hor << std::endl;
+		}
+
+		// read FireChance
+		line.clear();
+		getline(in, line);
+		try {
+			cls = utility::splitAtEq(line);
+		}
+		catch(...) {
+			throw(Exception(filename + " HAS INVALID FORMAT"));
+		}
+		if (cls.first != "FireChance") {
+			throw(Exception("EXPECTED FireChance but got " + cls.first + " IN FILE " + filename));
+		}
+		else {
+			fireChance = atoi(cls.second.c_str());
+			std::cout << "FireChance = " << fireChance << std::endl;
+		}
+		// read Score
+		line.clear();
+		getline(in, line);
+		try {
+			cls = utility::splitAtEq(line);
+		}
+		catch(...) {
+			throw(Exception(filename + " HAS INVALID FORMAT"));
+		}
+		if (cls.first != "Score") {
+			throw(Exception("EXPECTED Score but got " + cls.first + " IN FILE " + filename));
+		}
+		else {
+			score = atoi(cls.second.c_str());
+			std::cout << "Score = " << speed << std::endl;
+		}
+
 		// read }
 		line.clear();
 		getline(in, line);
@@ -187,7 +258,7 @@ namespace parse {
 		}
 		// construct Alien
 		if (className == "Alien1") {
-			std::shared_ptr<objects::Alien> ret (new objects::AlienType1(pos, speed, color, size_x, size_y));
+			std::shared_ptr<objects::Alien> ret (new objects::AlienType1(pos, color, speed, size_x, size_y, mov_hor, switch_dir, fireChance, score));
 			return ret;
 		}
 		else{

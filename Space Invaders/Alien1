@@ -4,5 +4,9 @@ Speed=3
 Size_x=20
 Size_y=10
 Color=White
+MoveHorizontal=100
+SwitchDirection=10000 
+FireChance=10
+Score=100
 }
 

@@ -33,6 +33,7 @@ int main()
 		controller.startCycle();
 		if (viewer.lost()) {
 			std::cout << "lost" << std::endl;
+			window.close();
 			sf::Event event;
 			while (window.pollEvent(event))
 			{

@@ -24,7 +24,15 @@ class Alien : public Entity {
 public:
 	//! A default constructor
 	Alien();
-	Alien(Position, sf::Color, double, unsigned int, unsigned int);
+	Alien(	Position,
+			sf::Color,
+			double speed,
+			unsigned int size_x,
+			unsigned int size_y,
+			unsigned int move_horizontal,
+			unsigned int switch_direction,
+			unsigned int fireChance,
+			unsigned int score);
 	//! An empty destructor
 	virtual ~Alien();
 
@@ -55,6 +63,9 @@ public:
 
 	virtual int getScore() const;
 
+	virtual int getMoveHor() const;
+	virtual int getSwitchDir() const;
+
 protected:
 	int fireTime_; 				//! time to fire
 	int moveHorizontal_time_;	//! used to determine the horizontal movement of aliens
@@ -71,15 +82,15 @@ protected:
 
 class AlienType1 : public Alien {
 public:
-	//! A constructor
-	/**
-	 * @param p the position on which the Alien will spawn
-	 * @param speed the speed with which the Alien will move
-	 * @param c the color the alien gets
-	 * @param sx the width of the alien
-	 * @param sy the height of the alien
-	 */
-	AlienType1(Position p, double speed, sf::Color c, unsigned int sx, unsigned int sy);
+	AlienType1(Position,
+			sf::Color,
+			double speed,
+			unsigned int size_x,
+			unsigned int size_y,
+			unsigned int move_horizontal,
+			unsigned int switch_direction,
+			unsigned int fireChance,
+			unsigned int score);
 	//! A function drawing the Alien in the window
 	/**
 	 * @param w a window which will be used to display the game

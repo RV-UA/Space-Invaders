@@ -68,6 +68,8 @@ public:
 	virtual unsigned int getSizeY() const {return size_y_;}
 	//! A getter for color_
 	virtual sf::Color getColor() const {return color_;}
+	//! A getter for speed
+	virtual double getSpeed() const { return speed_;}
 protected:
 	Position position_;				//! the position of the rightmost corner of the entity
 	const sf::Color color_;			//! the color of the entity

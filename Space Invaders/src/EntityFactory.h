@@ -24,21 +24,21 @@ public:
 	 * @param filename a file where an Alien is described
 	 * @return a pointer to a new Alien object
 	 */
-	std::shared_ptr<objects::Alien> createAlien(std::string filename);
+	static std::shared_ptr<objects::Alien> createAlien(std::string filename);
 
 	//! A function creating a Bunker from given file
 	/**
 	 * @param filename a file where a Bunker is described
 	 * @return a pointer to a new Bunker object
 	 */
-	std::shared_ptr<Bunker> createBunker(std::string filename);
+	static std::shared_ptr<Bunker> createBunker(std::string filename);
 
 	//! A function creating a Gun from given file
 	/**
 	 * @param filename a file where a Gun is described
 	 * @return a pointer to a new Gun object
 	 */
-	std::shared_ptr<Gun> createGun(std::string filename);
+	static std::shared_ptr<Gun> createGun(std::string filename);
 
 	//! A function creating a Bullet from a given Entity and a direction
 	/**

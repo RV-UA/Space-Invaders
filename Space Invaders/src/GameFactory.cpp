@@ -53,16 +53,19 @@ std::shared_ptr<GameModel> GameFactory::createGameModel(std::string filename) {
 	// Create Aliens: + put them on the right positions
 
 	std::shared_ptr<objects::Alien> tempAlien( ret->ef_.createAlien(alienFile));
+	double speed = tempAlien->getSpeed();
+	int switchDir = tempAlien->getSwitchDir();
+	int moveHor = tempAlien->getMoveHor();
 	int alienWidth = tempAlien->getSizeX();
 	int alienHeight = tempAlien->getSizeY();
-	int space_Aliens_x = (width - 200 - alienPerRow*alienWidth) / (alienPerRow-1);
+	int space_Aliens_x = (width - (speed* (switchDir / moveHor)+50+alienWidth) - alienPerRow*alienWidth) / (alienPerRow-1);
 	int space_Aliens_y = 50;
 
 	// set aliens on their right positions
 	int count = 0;
 	for (int i = 0; i < nrAlienRows; i++) {
 		for (int j = 0; j < alienPerRow; j++) {
-			ret->aliens_.push_back(ret->ef_.createAlien(alienFile));
+			ret->aliens_.push_back(objects::EntityFactory::createAlien(alienFile));
 
 			objects::Position pos = ret->aliens_.at(count)->getPosition();
 			pos.first+= 50 + j*space_Aliens_x + j* alienWidth;

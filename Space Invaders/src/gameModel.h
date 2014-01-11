@@ -63,6 +63,7 @@ private:
 	int gunLastFired_; //! the last time the gun was fired (based on clock_)
 	int bulletUpdateDelay_; //! the speed with which bullets will be updated
 	unsigned int level_; //! the level you are currently playing
+	unsigned int nrLevels_; //! the number of levels in this game
 
 	int score_; //! the score you have in the game
 

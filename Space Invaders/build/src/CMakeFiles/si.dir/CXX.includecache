@@ -1,0 +1,152 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/Alien.h
+Entity.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
+SFML/Graphics.hpp
+-
+iostream
+-
+memory
+-
+Bullet.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Bullet.h
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/Bullet.h
+Entity.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
+iostream
+-
+Exception.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Exception.h
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/Bunker.h
+Entity.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
+iostream
+-
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
+utility
+-
+SFML/Graphics.hpp
+-
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/EntityFactory.h
+iostream
+-
+memory
+-
+Exception.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Exception.h
+read.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/read.h
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/Exception.h
+exception
+-
+string
+-
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/GameFactory.h
+gameModel.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameModel.h
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/Gun.h
+Entity.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
+iostream
+-
+Bullet.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Bullet.h
+memory
+-
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameController.h
+gameModel.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameModel.h
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameModel.h
+SFML/Graphics.hpp
+-
+EntityFactory.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/EntityFactory.h
+Exception.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Exception.h
+read.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/read.h
+memory
+-
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameView.h
+SFML/Graphics.hpp
+-
+gameModel.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameModel.h
+memory
+-
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/main.cpp
+iostream
+-
+utilities.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/utilities.h
+read.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/read.h
+memory
+-
+SFML/Graphics.hpp
+-
+EntityFactory.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/EntityFactory.h
+GameFactory.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/GameFactory.h
+gameView.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameView.h
+gameController.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameController.h
+ctime
+-
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/read.h
+iostream
+-
+utility
+-
+fstream
+-
+string
+-
+memory
+-
+Entity.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
+utilities.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/utilities.h
+Alien.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Alien.h
+Bunker.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Bunker.h
+Gun.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Gun.h
+Exception.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Exception.h
+
+/home/robin/git/SpaceInvaders/Space Invaders/src/utilities.h
+vector
+-
+string
+-
+iostream
+-
+memory
+-
+Entity.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
+

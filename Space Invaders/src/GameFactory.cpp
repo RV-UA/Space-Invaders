@@ -33,9 +33,9 @@ std::shared_ptr<GameModel> GameFactory::createGameModel(std::string filename) {
 	int nrAlien2;
 	int nrAlien3;
 	int nrBunkers;
-	std::string alienFile = "./Alien1";
-	std::string bunkerFile = "./Bunker";
-	std::string gunFile = "./Gun";
+	std::string alienFile = "../Alien1";
+	std::string bunkerFile = "../Bunker";
+	std::string gunFile = "../Gun";
 
 	parse::readWindow(filename, bgColor, width, height,
 			alienSpeed, gunFireSpeed, bulletUpdateDelay,

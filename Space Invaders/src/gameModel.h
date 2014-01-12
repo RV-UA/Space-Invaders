@@ -45,7 +45,7 @@ private:
 	std::vector<std::shared_ptr<objects::Bunker> > bunkers_; //! the vector with pointers to all bunkers
 	std::vector<std::shared_ptr<objects::Bullet> > bullets_; //! the vector with pointers to all bullets
 
-	sf::Font arial_;	//! the font used in the program
+	//sf::Font arial_;	//! the font used in the program
 
 	sf::Text won_;		//! the message to be printed when player won the game
 	sf::Text lost_;		//! the message to be printed when player lost the game

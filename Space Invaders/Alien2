@@ -1,0 +1,12 @@
+Alien Class=Alien1
+{
+Speed=4
+Size_x=15
+Size_y=10
+Color=White
+MoveHorizontal=100
+SwitchDirection=10000 
+FireChance=10
+Score=100
+}
+

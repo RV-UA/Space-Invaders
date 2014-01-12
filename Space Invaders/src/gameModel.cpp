@@ -28,7 +28,7 @@ GameModel::GameModel() :
 	pauseTime_(0),
 	score_(0)
 	{
-	arial_.loadFromFile("arial.ttf");
+	//arial_.loadFromFile("arial.ttf");
 	clock_.restart();
 }
 

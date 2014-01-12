@@ -8,6 +8,7 @@
 #include "GameFactory.h"
 #include "gameView.h"
 #include "gameController.h"
+#include <ctime>
 using std::cout;
 using std::endl;
 int main()
@@ -16,24 +17,28 @@ int main()
 
 	game::GameFactory gf;
 
-	std::shared_ptr<game::GameModel> gm = gf.createGameModel("field");
+	std::shared_ptr<game::GameModel> gm = gf.createGameModel("../field");
 
+	std::cout << "game Model made" << std::endl;
 	game::GameController controller(gm);
+	std::cout << "game Controller made" << std::endl;
 	game::GameView viewer(gm);
+	std::cout << "game viewer made " << std::endl;
 
 	sf::VideoMode videoMode(viewer.getWidth(), viewer.getHeight());
 	sf::RenderWindow window(videoMode,"Space Invaders");
 
-	//sf::Text lost("Hope this works");
+	std::cout << "start while loop" << std::endl;
+	std::clock_t t;
 
-
+	unsigned int tps = CLOCKS_PER_SEC; // ticks per second
+	unsigned int ticks = tps/50; // the nr of ticks for a 60th of a second
 	try {
 
 	while (window.isOpen()) {
-		controller.startCycle();
-		if (viewer.lost()) {
-			std::cout << "lost" << std::endl;
-			window.close();
+		t = clock();
+
+		if (t % ticks != 0) {
 			sf::Event event;
 			while (window.pollEvent(event))
 			{
@@ -41,6 +46,12 @@ int main()
 					((event.type == sf::Event::KeyPressed) && (event.key.code==sf::Keyboard::Escape)) )
 					window.close();
 			}
+			continue;
+		}
+
+		controller.startCycle();
+		if (viewer.lost()) {
+			viewer.draw(window);
 		}
 		else if (viewer.won()) {
 			window.close();
@@ -84,7 +95,7 @@ int main()
 	}
 	}
 	catch(Exception& e) {
-		std::cout << e.what() << std::endl;
+		std::cout << "error: " << e.what() << std::endl;
 		throw(0);
 	}
 

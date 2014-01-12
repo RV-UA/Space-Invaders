@@ -84,6 +84,10 @@ read.h
 memory
 -
 
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameView.cpp
+gameView.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameView.h
+
 /home/robin/git/SpaceInvaders/Space Invaders/src/gameView.h
 SFML/Graphics.hpp
 -

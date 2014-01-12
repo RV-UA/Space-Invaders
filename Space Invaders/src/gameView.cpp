@@ -91,6 +91,7 @@ void GameView::drawWon(sf::RenderWindow& window) {
 
 void GameView::drawLost(sf::RenderWindow& window) {
 	window.clear(sf::Color::Red);
+	window.draw(model_->lost_);
 	std::cout << " Game Lost" << std::endl;
 }
 

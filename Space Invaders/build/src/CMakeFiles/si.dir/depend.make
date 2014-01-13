@@ -58,6 +58,7 @@ src/CMakeFiles/si.dir/gameController.cpp.o: ../src/Bunker.h
 src/CMakeFiles/si.dir/gameController.cpp.o: ../src/Entity.h
 src/CMakeFiles/si.dir/gameController.cpp.o: ../src/EntityFactory.h
 src/CMakeFiles/si.dir/gameController.cpp.o: ../src/Exception.h
+src/CMakeFiles/si.dir/gameController.cpp.o: ../src/GameFactory.h
 src/CMakeFiles/si.dir/gameController.cpp.o: ../src/Gun.h
 src/CMakeFiles/si.dir/gameController.cpp.o: ../src/gameController.cpp
 src/CMakeFiles/si.dir/gameController.cpp.o: ../src/gameController.h

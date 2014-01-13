@@ -59,6 +59,7 @@ src/CMakeFiles/si.dir/gameController.cpp.o
  /home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
  /home/robin/git/SpaceInvaders/Space Invaders/src/EntityFactory.h
  /home/robin/git/SpaceInvaders/Space Invaders/src/Exception.h
+ /home/robin/git/SpaceInvaders/Space Invaders/src/GameFactory.h
  /home/robin/git/SpaceInvaders/Space Invaders/src/Gun.h
  /home/robin/git/SpaceInvaders/Space Invaders/src/gameController.cpp
  /home/robin/git/SpaceInvaders/Space Invaders/src/gameController.h

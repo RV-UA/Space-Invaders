@@ -33,22 +33,29 @@ std::shared_ptr<GameModel> GameFactory::createGameModel(std::string filename) {
 	int nrAlien2;
 	int nrAlien3;
 	int nrBunkers;
-	std::string alienFile = "../Alien1";
-	std::string bunkerFile = "../Bunker";
-	std::string gunFile = "../Gun";
+	unsigned int level;
+	std::string alienFile = "../informationFiles/Alien1";
+	std::string bunkerFile = "../informationFiles/Bunker";
+	std::string gunFile = "../informationFiles/Gun";
 
-	parse::readWindow(filename, bgColor, width, height,
+	parse::readWindow(filename, level, bgColor, width, height,
 			alienSpeed, gunFireSpeed, bulletUpdateDelay,
 			alienPerRow, nrAlienRows,
 			nrAlien1, nrAlien2, nrAlien3,
 			nrBunkers);
 
+	ret->level_ = level;
 	ret->bgColor_ = bgColor;
 	ret->width_ = width;
 	ret->height_ = height;
 	ret->alienSpeed_ = alienSpeed;
 	ret->gunFireSpeed_ = gunFireSpeed;
 	ret->bulletUpdateDelay_= bulletUpdateDelay;
+
+	// Set text to correct position
+	ret->lost_.setPosition(50, height/2);
+	ret->won_.setPosition(50, height/2);
+	ret->levelText_.setPosition(width/2+50, 20);
 
 	// Create Aliens: + put them on the right positions
 
@@ -69,7 +76,7 @@ std::shared_ptr<GameModel> GameFactory::createGameModel(std::string filename) {
 
 			objects::Position pos = ret->aliens_.at(count)->getPosition();
 			pos.first+= 50 + j*space_Aliens_x + j* alienWidth;
-			pos.second += 10 + i* space_Aliens_y + i * alienHeight;
+			pos.second += 30 + i* space_Aliens_y + i * alienHeight;
 
 			ret->aliens_.at(count)->setPosition(pos);
 			std::cout << " ALien pos : " << pos.first << " , " << pos.second;

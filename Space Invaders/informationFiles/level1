@@ -1,0 +1,16 @@
+Window
+{
+Level=1
+BgColor=Black
+Width=1000
+Height=600
+AlienSpeed=50
+GunFireSpeed=500
+BulletUpdateDelay=2
+AlienPerRow=1
+NrAlienRows=2
+NrAlien1=2
+NrAlien2=0
+NrAlien3=0
+NrBunkers=3
+}

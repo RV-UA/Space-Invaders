@@ -68,9 +68,15 @@ Bullet.h
 memory
 -
 
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameController.cpp
+gameController.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/gameController.h
+
 /home/robin/git/SpaceInvaders/Space Invaders/src/gameController.h
 gameModel.h
 /home/robin/git/SpaceInvaders/Space Invaders/src/gameModel.h
+GameFactory.h
+/home/robin/git/SpaceInvaders/Space Invaders/src/GameFactory.h
 
 /home/robin/git/SpaceInvaders/Space Invaders/src/gameModel.h
 SFML/Graphics.hpp
@@ -83,10 +89,6 @@ read.h
 /home/robin/git/SpaceInvaders/Space Invaders/src/read.h
 memory
 -
-
-/home/robin/git/SpaceInvaders/Space Invaders/src/gameView.cpp
-gameView.h
-/home/robin/git/SpaceInvaders/Space Invaders/src/gameView.h
 
 /home/robin/git/SpaceInvaders/Space Invaders/src/gameView.h
 SFML/Graphics.hpp
@@ -153,4 +155,6 @@ memory
 -
 Entity.h
 /home/robin/git/SpaceInvaders/Space Invaders/src/Entity.h
+sstream
+-
 

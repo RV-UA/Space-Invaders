@@ -17,12 +17,13 @@ int main()
 
 	game::GameFactory gf;
 
-	std::shared_ptr<game::GameModel> gm = gf.createGameModel("../field");
-
+	std::shared_ptr<game::GameModel> gm = gf.createGameModel("../informationFiles/level1");
+	std::shared_ptr<game::ModelPtr> ptr(new game::ModelPtr);
+	ptr->model = gm;
 	std::cout << "game Model made" << std::endl;
-	game::GameController controller(gm);
+	game::GameController controller(ptr);
 	std::cout << "game Controller made" << std::endl;
-	game::GameView viewer(gm);
+	game::GameView viewer(ptr);
 	std::cout << "game viewer made " << std::endl;
 
 	sf::VideoMode videoMode(viewer.getWidth(), viewer.getHeight());
@@ -36,24 +37,23 @@ int main()
 	try {
 
 	while (window.isOpen()) {
-		t = clock();
 
-		if (t % ticks != 0) {
+		controller.startCycle();
+		if (viewer.lost()) {
+			viewer.draw(window);
 			sf::Event event;
 			while (window.pollEvent(event))
 			{
 				if ( (event.type == sf::Event::Closed) ||
 					((event.type == sf::Event::KeyPressed) && (event.key.code==sf::Keyboard::Escape)) )
 					window.close();
+				else if ((event.type == sf::Event::KeyPressed) && (event.key.code==sf::Keyboard::Return)) {
+					controller.restart();
+				}
 			}
-			continue;
-		}
-
-		controller.startCycle();
-		if (viewer.lost()) {
-			viewer.draw(window);
 		}
 		else if (viewer.won()) {
+			viewer.draw(window);
 			window.close();
 		}
 		else if (viewer.paused()) {
@@ -64,19 +64,40 @@ int main()
 				if ( (event.type == sf::Event::Closed) ||
 					((event.type == sf::Event::KeyPressed) && (event.key.code==sf::Keyboard::Escape)) )
 					window.close();
-				else if ( (event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::P)) {
+				else if ( (event.type == sf::Event::KeyReleased) && (event.key.code == sf::Keyboard::P)) {
 					controller.go();
 				}
 			}
 		}
+
+
+
 		else {
+			t = clock();
+
+			if (t % ticks != 0) {
+				std::cout << "While skipped:" << std::endl;
+				sf::Event event;
+				while (window.pollEvent(event))
+				{
+					if ( (event.type == sf::Event::Closed) ||
+						((event.type == sf::Event::KeyPressed) && (event.key.code==sf::Keyboard::Escape)) )
+						window.close();
+				}
+				continue;
+			}
+
 			viewer.draw(window);
 			sf::Event event;
 			while (window.pollEvent(event))
 			{
 				if ( (event.type == sf::Event::Closed) ||
 					((event.type == sf::Event::KeyPressed) && (event.key.code==sf::Keyboard::Escape)) )
-					window.close();
+					{window.close();}
+				else if ((event.type == sf::Event::KeyReleased) && (event.key.code == sf::Keyboard::P) ) {
+					std::cout << "Paused" << std::endl;
+					controller.pause();
+				}
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 				controller.moveGun(objects::left);

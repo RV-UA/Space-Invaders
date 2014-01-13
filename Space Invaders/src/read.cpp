@@ -595,7 +595,7 @@ namespace parse {
 
 	}
 
-	void readWindow(std::string file, sf::Color& bgColor,
+	void readWindow(std::string file, unsigned int &level, sf::Color& bgColor,
 			unsigned int &width, unsigned int &height,
 			double& alienSpeed, int& gunFireSpeed,int& bulletUpdateDelay,
 			int& aliensPerRow,int& nrAlienRows ,
@@ -620,6 +620,22 @@ namespace parse {
 		getline(in, line);
 		if (line.at(0) != '{') {
 			throw(Exception("EXPECTED { but got " + line + " IN FILE " + file));
+		}
+
+		// read level
+		line.clear();
+		getline(in, line);
+		try {
+			cls = utility::splitAtEq(line);
+		}
+		catch(...) {
+			throw(Exception( file+ " HAS INVALID FORMAT"));
+		}
+		if (cls.first != "Level") {
+			throw(Exception("EXPECTED Level but got " + cls.first + " IN FILE " + file));
+		}
+		else {
+			level = atoi(cls.second.c_str());
 		}
 
 		// read color

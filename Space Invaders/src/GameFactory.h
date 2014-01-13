@@ -16,7 +16,7 @@ class GameFactory {
 public:
 	GameFactory();
 	virtual ~GameFactory();
-	std::shared_ptr<GameModel> createGameModel(std::string filename);
+	static std::shared_ptr<GameModel> createGameModel(std::string filename);
 };
 
 } /* namespace game */

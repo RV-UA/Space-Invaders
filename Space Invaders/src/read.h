@@ -43,7 +43,7 @@ namespace parse {
 	 * @param nrAlien3 the nr of rows of aliens of type 3
 	 * @param nrBunkers the nr of bunkers on the field
 	 */
-	void readWindow(std::string file, sf::Color& BgColor, unsigned int &width, unsigned int &height, double& alienSpeed, int& gunFireSpeed,int& bulletUpdateDelay,int& aliensPerRow,int& nrRows , int& nrAlien1 , int& nrAlien2 ,int& nrAlien3, int& nrBunkers );
+	void readWindow(std::string file, unsigned int &level, sf::Color& BgColor, unsigned int &width, unsigned int &height, double& alienSpeed, int& gunFireSpeed,int& bulletUpdateDelay,int& aliensPerRow,int& nrRows , int& nrAlien1 , int& nrAlien2 ,int& nrAlien3, int& nrBunkers );
 }
 
 

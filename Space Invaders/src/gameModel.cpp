@@ -23,6 +23,8 @@ GameModel::GameModel() :
 	gunLastFired_(0),
 	bgColor_(sf::Color::Black),
 	level_(1),
+	nrLevels_(2 ),
+	levelText_("Level"+utility::toString(level_)),
 	bulletUpdateDelay_(0),
 	paused_(false),
 	pauseTime_(0),

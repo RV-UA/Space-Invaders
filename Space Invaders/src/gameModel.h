@@ -20,6 +20,7 @@ class GameController;
 class GameFactory;
 class GameView;
 
+
 class GameModel {
 	friend GameController;
 	friend GameFactory;
@@ -50,6 +51,7 @@ private:
 	sf::Text won_;		//! the message to be printed when player won the game
 	sf::Text lost_;		//! the message to be printed when player lost the game
 	sf::Text pause_;	//! the message to be printed when game is paused
+	sf::Text levelText_;//! the message to print the level
 	sf::Color bgColor_; //! the color of the background
 
 	bool win_;			//! is true when all aliens are dead
@@ -67,7 +69,14 @@ private:
 
 	int score_; //! the score you have in the game
 
+
 };
+
+struct ModelPtr {
+public:
+	std::shared_ptr<GameModel> model;	//! The pointer to the model
+};
+
 
 } /* namespace game */
 

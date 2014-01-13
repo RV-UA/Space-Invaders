@@ -9,13 +9,14 @@
 #define GAMECONTROLLER_H_
 
 #include"gameModel.h"
+#include "GameFactory.h"
 
 namespace game {
 
 class GameController {
 public:
 	//! Constructor with modelptr
-	GameController(std::shared_ptr<GameModel> model);
+	GameController(std::shared_ptr<ModelPtr> model);
 	//! Destructor
 	virtual ~GameController();
 	//! A function setting the time for 1 cycle:
@@ -35,6 +36,8 @@ public:
 	void moveGun(objects::MoveDirection dir );
 	//! A function performing all checks
 	void check();
+	//! A function restarting the game:
+	void restart();
 
 private:
 	//! A function checking collisions between aliens and bullets,
@@ -45,7 +48,7 @@ private:
 	void checkCollision();
 	void checkBoundaries();
 
-	std::shared_ptr<GameModel> model_; //! the model this controller controls
+	std::shared_ptr<ModelPtr> model_; //! the model this controller controls
 	int time_ ; //! the time on which a cycle starts:
 };
 

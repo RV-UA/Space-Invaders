@@ -15,9 +15,10 @@
 namespace game {
 
 class GameView {
+	friend class GameController;
 public:
 	//! constructor with GameModel given
-	GameView(std::shared_ptr<GameModel> model);
+	GameView(std::shared_ptr<ModelPtr>);
 	//! destructor
 	virtual ~GameView();
 	unsigned int getWidth();
@@ -43,7 +44,7 @@ private:
 	//! A function drawing won
 	void drawWon(sf::RenderWindow& window);
 
-	std::shared_ptr<GameModel> model_; //! the model the viewer is viewing
+	std::shared_ptr<ModelPtr> model_; //! the model the viewer is viewing
 
 };
 
